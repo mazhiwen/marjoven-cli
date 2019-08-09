@@ -1,0 +1,33 @@
+{
+  "name": "marjoven-cli",
+  "version": "1.0.0",
+  "description": "my own cli",
+  "bin": {
+    "marjoven": "bin/index.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mazhiwen/marjoven-cli.git"
+  },
+  "keywords": [
+    "cli",
+    "vue",
+    "node",
+    "admin",
+    "demo"
+  ],
+  "author": "Marjoven",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mazhiwen/marjoven-cli/issues"
+  },
+  "homepage": "https://github.com/mazhiwen/marjoven-cli#readme",
+  "dependencies": {
+    "commander": "^3.0.0",
+    "download-git-repo": "^2.0.0"
+  }
+}
