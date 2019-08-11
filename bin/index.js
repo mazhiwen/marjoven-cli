@@ -6,17 +6,17 @@ const commander = require('commander');
 
 
 
-program
+commander
   .option('-d, --debug', 'output extra debugging')
   .option('-s, --small', 'small pizza size')
   .option('-p, --pizza-type <type>', 'flavour of pizza');
 
-program.parse(process.argv);
+  commander.parse(process.argv);
 
-if (program.debug) console.log(program.opts());
+if (commander.debug) console.log(commander.opts());
 console.log('pizza details:');
-if (program.small) console.log('- small pizza size');
-if (program.pizzaType) console.log(`- ${program.pizzaType}`);
+if (commander.small) console.log('- small pizza size');
+if (commander.pizzaType) console.log(`- ${commander.pizzaType}`);
 
 
 

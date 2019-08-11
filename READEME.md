@@ -16,3 +16,11 @@ https://github.com/vuejs/vue-cli/blob/dev/packages/%40vue/cli/bin/vue.js
 
 
 https://segmentfault.com/a/1190000012083763
+
+
+## 开发模式
+
+```sh
+npm link
+# 就可以全局 node下执行marjoven，会执行bin/index.js
+```
