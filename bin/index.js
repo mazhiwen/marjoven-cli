@@ -1,35 +1,85 @@
 #!/usr/bin/env node
 
+// 下载git等库工具
 const download = require('download-git-repo');
+// node命令行操作库
 const commander = require('commander');
+// 交互输入
+const inquirer = require('inquirer');
+// ora clui 可以绘制动画 仪表等
+// figlet 绘制字符图形
+const ora = require('ora');
 
 
+
+
+// 用户步骤
+// 输入marjoven
+// 提示输入 项目名称，
+// 输入模版：admim web app
+// 
 
 
 commander
   .option('-d, --debug', 'output extra debugging')
   .option('-s, --small', 'small pizza size')
   .option('-p, --pizza-type <type>', 'flavour of pizza');
+// 解析命令行参数
+commander.parse(process.argv);
+// if (commander.debug) console.log(commander.opts());
+// console.log('pizza details:');
+// if (commander.small) console.log('- small pizza size');
+// if (commander.pizzaType) console.log(`- ${commander.pizzaType}`);
 
-  commander.parse(process.argv);
 
-if (commander.debug) console.log(commander.opts());
-console.log('pizza details:');
-if (commander.small) console.log('- small pizza size');
-if (commander.pizzaType) console.log(`- ${commander.pizzaType}`);
+
+
+var args = commander.args;
+if (!args.length || args.includes('init')) {
+  console.log(args);
+
+  inquirer
+    .prompt([{
+        type: 'input',
+        name: 'project_name',
+        message: "请输入项目名称:"
+      },
+      {
+        type: 'list',
+        name: 'project_template',
+        message: '请选择项目模版:',
+        choices: ['admin', 'app', 'web'],
+        // filter: function (val) {
+        //   return val.toLowerCase();
+        // }
+      }
+    ])
+    .then(answers => {
+      console.log(JSON.stringify(answers, null, '  '));
+      const spinner = ora({
+        text: '正在加载远程代码....',
+        color: 'yellow'
+      }).start();
+      download(
+        `mazhiwen/webpack-vue#master-${answers.project_template}`,
+        `${answers.project_name}/`,
+        function (err) {
+          spinner.succeed('加载远程代码成功!');
+          console.log(err ? 'Error' : 'Success')
+        }
+      )
+    });
+}
+
 
 
 
 
 // npm link 后在cli输入 marjoven
-console.log("hello world");
+//console.log("hello world");
+// 系统全局地址
+//console.log(process.cwd());
 
-console.log(process.cwd());
-
-console.log(download);
-// download('mazhiwen/webpack-vue', 'testcli/', function (err) {
-//   console.log(err ? 'Error' : 'Success')
-// })
 
 
 
